@@ -1,6 +1,6 @@
 import streamlit as st
 from workflow import create_graph
-from agents import answer_code_question, answer_generic_question, calculate_arithmetic
+from agents import answer_code_question, answer_generic_question, calculate_arithmetic, search_arxiv
 from typing import TypedDict
 
 
@@ -16,7 +16,9 @@ def process_question(state: UserInput):
     agent_name_map = {
         "code": "Code Agent",
         "general": "General Agent",
-        "arithmetic": "Arithmetic Agent"
+        "arithmetic": "Arithmetic Agent",
+        "arxiv": "Research Agent"
+
     }
     agent_name = agent_name_map.get(result["decision"], "Unknown Agent")
     st.write("The agent answering your question is:", agent_name)
@@ -27,6 +29,8 @@ def process_question(state: UserInput):
         return answer_generic_question(state)["output"]
     elif result["decision"] == "arithmetic":
         return calculate_arithmetic(state)["output"]
+    elif result["decision"] == "arxiv":
+        return search_arxiv(state)["output"]
     else:
         return "Error: Unable to process the question."
     

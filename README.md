@@ -7,14 +7,16 @@ A multi-agent chatbot application that can analyze and answer questions based on
 - **Technical (Code)**: Questions related to software development or coding.
 - **General**: General knowledge or non-technical questions.
 - **Arithmetic**: Basic arithmetic questions or calculations.
+- **Research**: Questions related to research papers.
 
 ### Features
 
-- **Question Classification**: The chatbot can identify whether the question is related to programming, general knowledge or arithmetic.
+- **Question Classification**: The chatbot can identify whether the question is related to programming, general knowledge, arithmetic or research papers.
 - **Answering Agent**: Based on the classification, the corresponding agent is invoked to answer the question:
   - Code Agent: Provides step-by-step answers to coding-related questions.
   - General Agent: Provides concise answers to general questions.
   - Arithmetic Agent: Evaluates and answers arithmetic questions.
+  - Research Agent: Provides brief introduction to the queried research paper.
 
 ### Technology Stack
 
@@ -48,4 +50,7 @@ Here are some sample outputs from the chatbot application :-
    ![Sample Output 2](assets/Code1.png)
 
 3. **Arithmetic Question**:
-   ![Sample Output 2](assets/Arithmetic1.png)
+   ![Sample Output 3](assets/Arithmetic1.png)
+
+4. **Research Paper Question**:
+   ![Sample Output 4](assets/Research1.png)
