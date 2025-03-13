@@ -48,9 +48,10 @@ Here are some sample outputs from the chatbot application :-
 
 2. **Code Question**:
    ![Sample Output 2](assets/Code1.png)
+   ![Sample Output 3](assets/Code2.png)
 
 3. **Arithmetic Question**:
-   ![Sample Output 3](assets/Arithmetic1.png)
+   ![Sample Output 4](assets/Arithmetic1.png)
 
 4. **Research Paper Question**:
-   ![Sample Output 4](assets/Research1.png)
+   ![Sample Output 5](assets/Research1.png)
