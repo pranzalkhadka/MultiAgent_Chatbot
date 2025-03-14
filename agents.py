@@ -10,33 +10,19 @@ load_dotenv()
 
 groq_api_key = os.getenv('GROQ_API_KEY')
 
+# model_name = "Gemma2-9b-It"
+# model_name = "mixtral-8x7b-32768"
+model_name = "llama-3.3-70b-versatile"
+
 arxiv_wrapper = ArxivAPIWrapper(top_k_results=1, doc_content_chars_max=300)
 arxiv_tool = ArxivQueryRun(api_wrapper=arxiv_wrapper)
 
 
-# def analyze_question(state):
-#     llm = ChatGroq(groq_api_key=groq_api_key, model_name="Gemma2-9b-It")
-#     prompt = PromptTemplate.from_template("""
-#     You are an agent that needs to define if a question is a technical code one, a general one, or an arithmetic question.
-
-#     Question: {input}
-
-#     Analyse the question. Only answer with "code" if the question is about technical development.
-#     Answer with "general" if the question is not technical.
-#     Answer with "arithmetic" if the question involves basic arithmetic (e.g., "2 + 2").
-
-#     Your answer (code/general/arithmetic):
-#     """)
-#     chain = prompt | llm
-#     response = chain.invoke({"input": state["input"]})
-#     decision = response.content.strip().lower()
-#     return {"decision": decision, "input": state["input"]}
-
-
 def analyze_question(state):
-    llm = ChatGroq(groq_api_key=groq_api_key, model_name="Gemma2-9b-It")
+    # llm = ChatGroq(groq_api_key=groq_api_key, model_name="Gemma2-9b-It")
+    llm = ChatGroq(groq_api_key=groq_api_key, model_name=model_name)
     prompt = PromptTemplate.from_template("""
-    You are an agent that needs to define if a question is a technical code one, a general one, an arithmetic one, or a research paper request.
+    You are an agent that needs to define if a question is a technical code one, a general one, an arithmetic one, or related to an AI research paper.
 
     Question: {input}
 
@@ -44,7 +30,7 @@ def analyze_question(state):
     - "code" if the question is about technical development.
     - "general" if the question is not technical.
     - "arithmetic" if the question involves basic arithmetic (e.g., "2 + 2").
-    - "arxiv" if the question is about a research paper or scientific topic.
+    - "arxiv" if the question is about a research paper or if a name of research paper is mentioned.
 
     Your answer (code/general/arithmetic/arxiv):
     """)
@@ -55,7 +41,7 @@ def analyze_question(state):
 
 
 def answer_code_question(state):
-    llm = ChatGroq(groq_api_key=groq_api_key, model_name="Gemma2-9b-It")
+    llm = ChatGroq(groq_api_key=groq_api_key, model_name=model_name)
     prompt = PromptTemplate.from_template(
         "You are a software engineer. Answer this question with step-by-step details: {input}"
     )
@@ -65,7 +51,7 @@ def answer_code_question(state):
 
 
 def answer_generic_question(state):
-    llm = ChatGroq(groq_api_key=groq_api_key, model_name="Gemma2-9b-It")
+    llm = ChatGroq(groq_api_key=groq_api_key, model_name=model_name)
     prompt = PromptTemplate.from_template(
         "Give a general and concise answer to the question: {input}"
     )
